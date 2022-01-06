@@ -6,7 +6,7 @@ const CartItem = () => {
     return (
         <div className='cartitem'>
             <div className='cartitem-image'>
-                <img src='' alt='' />
+                {/* <img src='' alt='' /> */}
             </div>
 
             <Link to={`/product/${1}`}>
