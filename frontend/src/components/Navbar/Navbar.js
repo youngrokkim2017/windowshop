@@ -1,22 +1,23 @@
 import React from 'react'
+import './Navbar.css'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     return (
-        <nav>
+        <nav className='navbar'>
             {/* logo */}
-            <div>
+            <div className='navbar-logo'>
                 <h2>Shopping Cart</h2>
             </div>
 
             {/* links */}
-            <ul>
+            <ul className='navbar-links'>
                 <li>
-                    <Link to='/cart'>
+                    <Link to='/cart' className='cart-link'>
                         {/* icon */}
                         <i className='fas fa-shopping-cart'></i>
                         Cart
-                        <span>
+                        <span className='cartlogo-badge'>
                             0
                         </span>
                     </Link>
@@ -29,7 +30,7 @@ const Navbar = () => {
             </ul>
 
             {/* hamburger menu */}
-            <div>
+            <div className='hamburger-menu'>
                 <div></div>
                 <div></div>
                 <div></div>
