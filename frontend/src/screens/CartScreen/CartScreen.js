@@ -16,9 +16,17 @@ const CartScreen = () => {
     const qtyChangeHandler = (id, qty) => {
         dispatch(addToCart(id, qty))
     }
-
+ 
     const removeHandler = (id) => {
         dispatch(removeFromCart(id))
+    }
+
+    const getCartCount = () => {
+        return cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
+    }
+
+    const getCartSubtotal = () => {
+        return cartItems.reduce((price, item) => (item.price * item.qty) + price, 0)
     }
     
     return (
@@ -40,8 +48,8 @@ const CartScreen = () => {
             </div>
             <div className='cartscreen-right'>
                 <div className='cartscreen-info'>
-                    <p>subtotal count</p>
-                    <p>$price</p>
+                    <p>Subtotal ({getCartCount()}) items</p>
+                    <p>${getCartSubtotal().toFixed(2)}</p>
                 </div>
                 <button>Proceed to Checkout</button>
             </div>
