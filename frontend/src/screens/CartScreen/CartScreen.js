@@ -3,6 +3,8 @@ import './CartScreen.css'
 import CartItem from '../../components/CartItem/CartItem' 
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+// Actions
+import { addToCart, removeFromCart } from '../../redux/actions/cartActions'
 
 const CartScreen = () => {
     const dispatch = useDispatch()
@@ -10,6 +12,14 @@ const CartScreen = () => {
     const cart = useSelector(state => state.cart)
 
     const { cartItems } = cart
+
+    const qtyChangeHandler = (id, qty) => {
+        dispatch(addToCart(id, qty))
+    }
+
+    const removeHandler = (id) => {
+        dispatch(removeFromCart(id))
+    }
     
     return (
         <div className='cartscreen'>
@@ -21,7 +31,11 @@ const CartScreen = () => {
                         <Link to='/'>Go Back</Link>
                     </div>
                 ) : cartItems.map(item => (
-                    <CartItem item={item} />
+                    <CartItem 
+                        item={item} 
+                        qtyChangeHandler={qtyChangeHandler} 
+                        removeHandler={removeHandler} 
+                    />
                 ))}
             </div>
             <div className='cartscreen-right'>
