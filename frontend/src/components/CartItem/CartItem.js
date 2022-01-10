@@ -2,23 +2,25 @@ import React from 'react'
 import './CartItem.css'
 import { Link } from 'react-router-dom'
 
-const CartItem = () => {
+const CartItem = ({ item }) => {
     return (
         <div className='cartitem'>
             <div className='cartitem-image'>
-                {/* <img src='' alt='' /> */}
+                <img src={item.imageUrl} alt='' />
             </div>
 
-            <Link to={`/product/${1}`}>
-                <p>Product 1</p>
+            <Link to={`/product/${item.product}`}>
+                <p>{item.name}</p>
             </Link>
 
             <p className='cartitem-price'>  
-                $ price
+                ${item.price}
             </p>
 
-            <select className='cartitem-select'>
-                <option value='1'>1</option>
+            <select className='cartitem-select' value={item.qty} onChange={() => console.log('handler')}>
+                {[...Array(item.countInStock).keys()].map((i) => (
+                    <option key={i + 1} value={i + 1}>{i + 1}</option>
+                ))}
             </select>
 
             <button className='cartitem-deleteBtn'>
